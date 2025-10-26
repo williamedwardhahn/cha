@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Gong Fu Cha - The Art of Chinese Tea Ceremony</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4a3426;
+            --secondary-color: #8b6f47;
+            --accent-color: #d4a574;
+            --light-bg: #f5f2e8;
+            --text-dark: #2c1810;
+            --border-color: #c9b79c;
+            --shadow: 0 2px 10px rgba(74, 52, 38, 0.1);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(to bottom, #faf8f3, #f5f2e8);
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '茶';
+            position: absolute;
+            right: -50px;
+            top: -50px;
+            font-size: 200px;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--light-bg);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Container and Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2::before {
+            content: '◈';
+            color: var(--accent-color);
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        /* Tea Types Grid */
+        .tea-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tea-card {
+            background: linear-gradient(to bottom, #fdfcf8, #f9f6ed);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tea-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(74, 52, 38, 0.15);
+        }
+
+        .tea-card h4 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .tea-details {
+            margin-top: 1rem;
+        }
+
+        .tea-details div {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem 0;
+            border-bottom: 1px dotted var(--border-color);
+        }
+
+        .tea-details div:last-child {
+            border-bottom: none;
+        }
+
+        /* Equipment List */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .equipment-item {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .equipment-item strong {
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Ceremony Steps */
+        .ceremony-steps {
+            counter-reset: step-counter;
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+            counter-increment: step-counter;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Tips and Notes */
+        .tip {
+            background: linear-gradient(135deg, #fef9e7, #fdf4dc);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+            font-style: italic;
+        }
+
+        .tip::before {
+            content: '💡 Tip: ';
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-style: normal;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--light-bg);
+        }
+
+        tbody tr:hover {
+            background: #f9f6ed;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary-color);
+            color: white;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design - Tablet */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Mobile Phone Optimization */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
+
+            header::before {
+                font-size: 120px;
+                right: -30px;
+                top: -30px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            nav {
+                padding: 0.5rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav a {
+                display: block;
+                text-align: center;
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.25rem;
+                margin-bottom: 1rem;
+                border-radius: 8px;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+
+            h2::before {
+                content: '';
+                display: none;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+                text-align: left;
+                line-height: 1.6;
+            }
+
+            .tea-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .tea-card {
+                padding: 1rem;
+            }
+
+            .tea-card h4 {
+                font-size: 1.1rem;
+            }
+
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .equipment-item {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .step {
+                padding-left: 2.5rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .step::before {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 0.9rem;
+            }
+
+            .tip {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Mobile-optimized table */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 0.4rem;
+                font-size: 0.8rem;
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Extra small phones */
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            h2 {
+                font-size: 1.15rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            .tea-details div {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Landscape orientation for phones */
+        @media (max-width: 812px) and (orientation: landscape) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .tea-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Touch-friendly adjustments */
+        @media (pointer: coarse) {
+            nav a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            button {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            input {
+                min-height: 40px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        /* Improve readability on small screens */
+        @media (max-width: 480px) {
+            .ceremony-steps .step strong {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: var(--primary-color);
+            }
+
+            /* Stack tea details vertically on very small screens */
+            .tea-details div {
+                flex-direction: column;
+                gap: 0.25rem;
+                padding: 0.5rem 0;
+            }
+
+            .tea-details div span {
+                font-weight: 600;
+                color: var(--secondary-color);
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>功夫茶 GONG FU CHA</h1>
+        <p class="subtitle">The Art of Chinese Tea Ceremony</p>
+    </header>
+
+    <nav id="navigation">
+        <button id="menuToggle" onclick="toggleMenu()" style="display: none; background: var(--primary-color); color: white; border: none; padding: 0.75rem 1rem; border-radius: 5px; cursor: pointer; font-size: 1.2rem; margin: 0 auto;">☰ Menu</button>
+        <ul id="navMenu">
+            <li><a href="#introduction" onclick="closeMenu()">Introduction</a></li>
+            <li><a href="#equipment" onclick="closeMenu()">Equipment</a></li>
+            <li><a href="#tea-types" onclick="closeMenu()">Tea Types</a></li>
+            <li><a href="#ceremony" onclick="closeMenu()">Ceremony Steps</a></li>
+            <li><a href="#steeping" onclick="closeMenu()">Steeping Guide</a></li>
+            <li><a href="#etiquette" onclick="closeMenu()">Etiquette</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="introduction">
+            <h2>Introduction to Gong Fu Cha</h2>
+            <p>
+                Gong Fu Cha (功夫茶), literally meaning "making tea with skill," is a traditional Chinese tea ceremony that emphasizes the artful and mindful preparation of tea. Unlike the Japanese tea ceremony's focus on ritual and aesthetics, Gong Fu Cha prioritizes extracting the best possible flavor from premium tea leaves through precise brewing techniques.
+            </p>
+            <p>
+                This centuries-old practice originated in the Fujian and Guangdong provinces during the Song Dynasty and has evolved into a sophisticated art form that celebrates the subtle nuances of fine Chinese teas. The ceremony transforms tea drinking from a simple act of consumption into a meditative practice that engages all the senses.
+            </p>
+            <div class="tip">
+                The term "gong fu" refers not to martial arts, but to any skill acquired through practice and patience. In tea brewing, it represents the dedication to perfecting every aspect of the tea-making process.
+            </div>
+        </section>
+
+        <section id="equipment">
+            <h2>Essential Equipment</h2>
+            <div class="equipment-grid">
+                <div class="equipment-item">
+                    <strong>Gaiwan (盖碗) or Yixing Teapot</strong>
+                    A small brewing vessel, typically 100-150ml. Gaiwans are versatile and allow better control, while Yixing clay teapots enhance specific tea types.
+                </div>
+                <div class="equipment-item">
+                    <strong>Tea Pitcher (Gong Dao Bei 公道杯)</strong>
+                    Also called "fairness cup," ensures even distribution of tea strength among all cups.
+                </div>
+                <div class="equipment-item">
+                    <strong>Tea Cups (Pin Ming Bei 品茗杯)</strong>
+                    Small cups (30-50ml) for tasting, allowing multiple infusions without overconsumption.
+                </div>
+                <div class="equipment-item">
+                    <strong>Tea Tray (Cha Pan 茶盘)</strong>
+                    Catches water and tea during the ceremony, keeping the serving area clean.
+                </div>
+                <div class="equipment-item">
+                    <strong>Tea Tools (Cha Dao 茶道)</strong>
+                    Including tongs, scoop, needle, and funnel for handling tea and equipment.
+                </div>
+                <div class="equipment-item">
+                    <strong>Kettle and Thermometer</strong>
+                    Variable temperature control is crucial for different tea types.
+                </div>
+            </div>
+        </section>
+
+        <section id="tea-types">
+            <h2>Tea Types for Gong Fu Brewing</h2>
+            <div class="tea-grid">
+                <div class="tea-card">
+                    <h4>Green Tea (绿茶)</h4>
+                    <p>Delicate, fresh, and vegetal. Best with lower temperatures to preserve subtle flavors.</p>
+                    <div class="tea-details">
+                        <div><span>Temperature:</span><strong>75-80°C</strong></div>
+                        <div><span>First Steep:</span><strong>10-15 seconds</strong></div>
+                        <div><span>Leaf Ratio:</span><strong>3-4g per 100ml</strong></div>
+                    </div>
+                </div>
+                <div class="tea-card">
+                    <h4>White Tea (白茶)</h4>
+                    <p>Subtle, naturally sweet, and refreshing. Requires gentle brewing to maintain delicacy.</p>
+                    <div class="tea-details">
+                        <div><span>Temperature:</span><strong>80-85°C</strong></div>
+                        <div><span>First Steep:</span><strong>20-30 seconds</strong></div>
+                        <div><span>Leaf Ratio:</span><strong>4-5g per 100ml</strong></div>
+                    </div>
+                </div>
+                <div class="tea-card">
+                    <h4>Oolong Tea (乌龙茶)</h4>
+                    <p>Complex, aromatic, partially oxidized. The classic choice for gong fu brewing.</p>
+                    <div class="tea-details">
+                        <div><span>Temperature:</span><strong>90-95°C</strong></div>
+                        <div><span>First Steep:</span><strong>20-25 seconds</strong></div>
+                        <div><span>Leaf Ratio:</span><strong>6-8g per 100ml</strong></div>
+                    </div>
+                </div>
+                <div class="tea-card">
+                    <h4>Black Tea (红茶)</h4>
+                    <p>Full-bodied, malty, and sweet. Can handle higher temperatures without becoming bitter.</p>
+                    <div class="tea-details">
+                        <div><span>Temperature:</span><strong>90-95°C</strong></div>
+                        <div><span>First Steep:</span><strong>10-15 seconds</strong></div>
+                        <div><span>Leaf Ratio:</span><strong>4-5g per 100ml</strong></div>
+                    </div>
+                </div>
+                <div class="tea-card">
+                    <h4>Pu-erh Tea (普洱茶)</h4>
+                    <p>Earthy, smooth, and complex. Aged teas that benefit from multiple rinses.</p>
+                    <div class="tea-details">
+                        <div><span>Temperature:</span><strong>95-100°C</strong></div>
+                        <div><span>First Steep:</span><strong>10-20 seconds</strong></div>
+                        <div><span>Leaf Ratio:</span><strong>5-7g per 100ml</strong></div>
+                    </div>
+                </div>
+                <div class="tea-card">
+                    <h4>Yellow Tea (黄茶)</h4>
+                    <p>Rare, mellow, and slightly sweet. Similar to green but with a smoother character.</p>
+                    <div class="tea-details">
+                        <div><span>Temperature:</span><strong>80-85°C</strong></div>
+                        <div><span>First Steep:</span><strong>15-20 seconds</strong></div>
+                        <div><span>Leaf Ratio:</span><strong>3-4g per 100ml</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ceremony">
+            <h2>The Complete Ceremony Steps</h2>
+            <div class="ceremony-steps">
+                <div class="step">
+                    <strong>Warming the Vessels</strong>
+                    <p>Pour hot water into the teapot/gaiwan and cups to warm them. This ensures temperature stability and removes any dust. Discard this water.</p>
+                </div>
+                <div class="step">
+                    <strong>Appreciating the Leaves</strong>
+                    <p>Present the dry tea leaves for guests to appreciate their appearance and aroma. Use the tea scoop to transfer leaves to the brewing vessel.</p>
+                </div>
+                <div class="step">
+                    <strong>Awakening the Tea</strong>
+                    <p>Add hot water just to cover the leaves, then immediately pour it out. This rinse awakens the leaves and removes any impurities.</p>
+                </div>
+                <div class="step">
+                    <strong>Smelling the Aroma</strong>
+                    <p>Invite guests to smell the wet leaves. The aroma at this stage reveals the tea's character and quality.</p>
+                </div>
+                <div class="step">
+                    <strong>First Infusion</strong>
+                    <p>Pour water in a circular motion to ensure even extraction. Steep for the recommended time (usually 15-30 seconds for the first infusion).</p>
+                </div>
+                <div class="step">
+                    <strong>Decanting</strong>
+                    <p>Pour the entire contents into the fairness pitcher to stop the brewing process and ensure consistent strength.</p>
+                </div>
+                <div class="step">
+                    <strong>Serving</strong>
+                    <p>Pour tea from the pitcher into individual cups, filling each cup only 70% full. This allows guests to appreciate the aroma without burning their fingers.</p>
+                </div>
+                <div class="step">
+                    <strong>Tasting</strong>
+                    <p>Sip the tea in three small sips: first to taste, second to appreciate, third to savor the aftertaste.</p>
+                </div>
+                <div class="step">
+                    <strong>Multiple Infusions</strong>
+                    <p>Repeat the brewing process, increasing steeping time by 5-10 seconds with each infusion. Quality teas can yield 6-10 infusions.</p>
+                </div>
+                <div class="step">
+                    <strong>Appreciating the Spent Leaves</strong>
+                    <p>After the final infusion, examine the fully opened leaves to appreciate their quality and processing.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="steeping">
+            <h2>Detailed Steeping Guide</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tea Type</th>
+                        <th>Water Temp</th>
+                        <th>Leaf Amount</th>
+                        <th>Rinse</th>
+                        <th>1st Steep</th>
+                        <th>2nd Steep</th>
+                        <th>3rd+ Steep</th>
+                        <th>Total Infusions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dragon Well (Longjing)</td>
+                        <td>75-80°C</td>
+                        <td>3g/100ml</td>
+                        <td>Optional</td>
+                        <td>15 sec</td>
+                        <td>20 sec</td>
+                        <td>+5-10 sec</td>
+                        <td>4-5</td>
+                    </tr>
+                    <tr>
+                        <td>Silver Needle</td>
+                        <td>80-85°C</td>
+                        <td>5g/100ml</td>
+                        <td>No</td>
+                        <td>30 sec</td>
+                        <td>35 sec</td>
+                        <td>+10 sec</td>
+                        <td>5-6</td>
+                    </tr>
+                    <tr>
+                        <td>Tie Guan Yin</td>
+                        <td>95°C</td>
+                        <td>7g/100ml</td>
+                        <td>Yes</td>
+                        <td>25 sec</td>
+                        <td>30 sec</td>
+                        <td>+5-10 sec</td>
+                        <td>7-9</td>
+                    </tr>
+                    <tr>
+                        <td>Da Hong Pao</td>
+                        <td>95-100°C</td>
+                        <td>8g/100ml</td>
+                        <td>Yes</td>
+                        <td>20 sec</td>
+                        <td>25 sec</td>
+                        <td>+5-10 sec</td>
+                        <td>8-10</td>
+                    </tr>
+                    <tr>
+                        <td>Phoenix Dancong</td>
+                        <td>95°C</td>
+                        <td>6g/100ml</td>
+                        <td>Quick</td>
+                        <td>15 sec</td>
+                        <td>20 sec</td>
+                        <td>+5 sec</td>
+                        <td>10-12</td>
+                    </tr>
+                    <tr>
+                        <td>Dian Hong</td>
+                        <td>90°C</td>
+                        <td>4g/100ml</td>
+                        <td>Optional</td>
+                        <td>10 sec</td>
+                        <td>15 sec</td>
+                        <td>+5 sec</td>
+                        <td>6-8</td>
+                    </tr>
+                    <tr>
+                        <td>Sheng Pu-erh</td>
+                        <td>95-100°C</td>
+                        <td>6g/100ml</td>
+                        <td>Yes (2x)</td>
+                        <td>15 sec</td>
+                        <td>15 sec</td>
+                        <td>+5-10 sec</td>
+                        <td>10-15</td>
+                    </tr>
+                    <tr>
+                        <td>Shou Pu-erh</td>
+                        <td>100°C</td>
+                        <td>7g/100ml</td>
+                        <td>Yes (2x)</td>
+                        <td>10 sec</td>
+                        <td>10 sec</td>
+                        <td>+5 sec</td>
+                        <td>10-20</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tip">
+                Water quality is crucial! Use filtered or spring water with low mineral content. The ancient saying goes: "Water is the mother of tea, and the teapot is the father of tea."
+            </div>
+
+            <h3>Advanced Techniques</h3>
+            <p><strong>Flash Steeping:</strong> For very high-quality oolongs and pu-erhs, use more leaves (10-12g/100ml) and steep for just 5-10 seconds, pouring immediately. This yields more infusions with clearer flavor profiles.</p>
+            <p><strong>Grandpa Style:</strong> While not traditional gong fu, some enjoy adding leaves directly to a tall glass and refilling with water as they drink, allowing continuous infusion.</p>
+            <p><strong>Competition Brewing:</strong> Professional tasters use 3g in 150ml for exactly 6 minutes to evaluate teas. This reveals both strengths and flaws.</p>
+        </section>
+
+        <section id="etiquette">
+            <h2>Etiquette and Cultural Significance</h2>
+            <h3>For the Host</h3>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li>🍃 Always serve guests first, starting with the eldest or most honored</li>
+                <li>🍃 Pour tea with your right hand, supporting your right arm with your left hand as a sign of respect</li>
+                <li>🍃 Keep cups only 70% full - "tea full, no respect"</li>
+                <li>🍃 Replace tea leaves when they no longer produce flavorful infusions</li>
+                <li>🍃 Maintain focus on the tea preparation, avoiding excessive conversation during brewing</li>
+            </ul>
+
+            <h3>For the Guest</h3>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li>🍵 Tap two fingers on the table when being served as a silent "thank you" (this represents a bow)</li>
+                <li>🍵 Hold the cup with both hands when receiving it</li>
+                <li>🍵 Smell the tea before tasting - this shows appreciation</li>
+                <li>🍵 Finish your cup before it's refilled</li>
+                <li>🍵 Compliment specific aspects of the tea rather than making general statements</li>
+            </ul>
+
+            <h3>The Philosophy</h3>
+            <p>
+                Gong Fu Cha embodies four key principles: <strong>He (和)</strong> - Harmony between human and nature, <strong>Jing (静)</strong> - Tranquility of mind, <strong>Yi (怡)</strong> - Joy and contentment, and <strong>Zhen (真)</strong> - Authenticity and truth. The ceremony creates a space for mindfulness, allowing participants to slow down and appreciate the present moment through the simple act of making and sharing tea.
+            </p>
+
+            <div class="tip">
+                The finger-tapping tradition dates back to Emperor Qianlong's travels. When he poured tea for his servants while traveling incognito, they couldn't kowtow without revealing his identity, so they "bowed" with their fingers instead.
+            </div>
+
+            <h3>Common Phrases</h3>
+            <p><strong>"Qing cha" (请茶)</strong> - "Please have tea" (invitation to drink)</p>
+            <p><strong>"Xie xie cha" (谢谢茶)</strong> - "Thank you for the tea"</p>
+            <p><strong>"Hao cha" (好茶)</strong> - "Good tea" (simple compliment)</p>
+            <p><strong>"Cha xiang" (茶香)</strong> - Commenting on the tea's aroma</p>
+            <p><strong>"Hui gan" (回甘)</strong> - Describing the sweet aftertaste</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>🍃 May your tea journey bring peace, mindfulness, and connection 🍃</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">The way of tea is the way of life - approach both with patience, respect, and gratitude</p>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('menuToggle');
+            
+            if (menu.style.display === 'flex' || menu.style.display === '') {
+                menu.style.display = 'none';
+                toggle.innerHTML = '☰ Menu';
+            } else {
+                menu.style.display = 'flex';
+                toggle.innerHTML = '✕ Close';
+            }
+        }
+
+        function closeMenu() {
+            if (window.innerWidth <= 480) {
+                document.getElementById('navMenu').style.display = 'none';
+                document.getElementById('menuToggle').innerHTML = '☰ Menu';
+            }
+        }
+
+        // Setup mobile menu on load and resize
+        function setupMobileMenu() {
+            const toggle = document.getElementById('menuToggle');
+            const menu = document.getElementById('navMenu');
+            
+            if (window.innerWidth <= 480) {
+                toggle.style.display = 'block';
+                menu.style.display = 'none';
+            } else {
+                toggle.style.display = 'none';
+                menu.style.display = 'flex';
+            }
+        }
+
+        window.addEventListener('load', setupMobileMenu);
+        window.addEventListener('resize', setupMobileMenu);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Add offset for mobile fixed header
+                    const offset = window.innerWidth <= 480 ? 70 : 80;
+                    const targetPosition = target.offsetTop - offset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add interactive tea timer
+        function createTimer() {
+            const timerHtml = `
+                <div id="teaTimer" style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 1000; min-width: 200px;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">Steep Timer</h4>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                        <input type="number" id="timerSeconds" value="20" min="1" max="300" style="width: 60px; padding: 0.25rem; font-size: 16px;">
+                        <button onclick="startTimer()" style="padding: 0.25rem 0.5rem; background: var(--accent-color); color: white; border: none; border-radius: 3px; cursor: pointer;">Start</button>
+                        <button onclick="resetTimer()" style="padding: 0.25rem 0.5rem; background: var(--secondary-color); color: white; border: none; border-radius: 3px; cursor: pointer;">Reset</button>
+                    </div>
+                    <div class="timer-presets" style="display: flex; gap: 0.3rem; flex-wrap: wrap; margin-bottom: 0.5rem; font-size: 0.8rem;">
+                        <button onclick="setTimer(15)" style="padding: 0.2rem 0.4rem; background: #f5f2e8; border: 1px solid var(--border-color); border-radius: 3px; cursor: pointer; font-size: 0.75rem;">Green 15s</button>
+                        <button onclick="setTimer(25)" style="padding: 0.2rem 0.4rem; background: #f5f2e8; border: 1px solid var(--border-color); border-radius: 3px; cursor: pointer; font-size: 0.75rem;">Oolong 25s</button>
+                        <button onclick="setTimer(30)" style="padding: 0.2rem 0.4rem; background: #f5f2e8; border: 1px solid var(--border-color); border-radius: 3px; cursor: pointer; font-size: 0.75rem;">White 30s</button>
+                    </div>
+                    <div id="timerDisplay" style="font-size: 1.5rem; text-align: center; color: var(--primary-color);">00:20</div>
+                    <button id="timerToggle" onclick="toggleTimer()" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0; width: 24px; height: 24px;">−</button>
+                </div>
+            `;
+            
+            const timerDiv = document.createElement('div');
+            timerDiv.innerHTML = timerHtml;
+            document.body.appendChild(timerDiv);
+
+            // Add mobile-specific timer styles
+            if (window.innerWidth <= 480) {
+                const timer = document.getElementById('teaTimer');
+                timer.style.bottom = '10px';
+                timer.style.right = '10px';
+                timer.style.left = '10px';
+                timer.style.minWidth = 'auto';
+                timer.style.maxWidth = '350px';
+                timer.style.margin = '0 auto';
+            }
+        }
+
+        let timerInterval;
+        let timeLeft;
+        let timerMinimized = false;
+
+        function setTimer(seconds) {
+            document.getElementById('timerSeconds').value = seconds;
+            resetTimer();
+        }
+
+        let timerInterval;
+        let timeLeft;
+        let timerMinimized = false;
+
+        function toggleTimer() {
+            const timer = document.getElementById('teaTimer');
+            const toggle = document.getElementById('timerToggle');
+            
+            if (timerMinimized) {
+                timer.style.height = 'auto';
+                timer.querySelector('h4').style.display = 'block';
+                timer.querySelectorAll('div').forEach(div => div.style.display = 'flex');
+                toggle.textContent = '−';
+                timerMinimized = false;
+            } else {
+                timer.style.height = '40px';
+                timer.querySelector('h4').style.display = 'none';
+                timer.querySelectorAll('div').forEach(div => div.style.display = 'none');
+                toggle.textContent = '⏱';
+                timerMinimized = true;
+            }
+        }
+
+        let timerInterval;
+        let timeLeft;
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = document.getElementById('timerSeconds').value;
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    // Simple notification
+                    document.getElementById('timerDisplay').style.color = '#d4a574';
+                    document.getElementById('timerDisplay').textContent = 'Ready!';
+                    setTimeout(() => {
+                        document.getElementById('timerDisplay').style.color = 'var(--primary-color)';
+                    }, 3000);
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timeLeft = document.getElementById('timerSeconds').value;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timerDisplay').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Initialize timer on page load
+        createTimer();
+        resetTimer();
+
+        // Add subtle animation to tea cards on scroll
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.8s ease-out';
+                }
+            });
+        });
+
+        document.querySelectorAll('.tea-card, .equipment-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
