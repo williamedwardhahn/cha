@@ -347,19 +347,61 @@
 
             nav {
                 padding: 0.5rem;
+                position: relative;
             }
 
-            nav ul {
-                gap: 0.5rem;
+            #menuToggle {
+                width: 100%;
+                max-width: 200px;
+                display: block !important;
+                margin: 0 auto;
+                font-weight: 600;
+            }
+
+            #navMenu {
+                display: none !important;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
                 flex-direction: column;
                 align-items: stretch;
+                gap: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                z-index: 999;
+                margin-top: 0.5rem;
+                border-radius: 8px;
+                overflow: hidden;
+                border: 1px solid var(--border-color);
+            }
+
+            #navMenu.show {
+                display: flex !important;
+            }
+
+            nav ul li {
+                margin: 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            nav ul li:last-child {
+                border-bottom: none;
             }
 
             nav a {
                 display: block;
                 text-align: center;
-                padding: 0.75rem;
-                font-size: 0.9rem;
+                padding: 1rem;
+                font-size: 0.95rem;
+                background: white;
+                transition: background 0.3s ease;
+            }
+
+            nav a:hover {
+                background: var(--light-bg);
+                color: var(--primary-color);
+                border-radius: 0;
             }
 
             .container {
@@ -542,8 +584,25 @@
             }
         }
 
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         section {
             animation: fadeIn 0.8s ease-out;
+        }
+
+        @media (max-width: 480px) {
+            #navMenu.show {
+                animation: slideDown 0.3s ease-out;
+            }
         }
     </style>
 </head>
@@ -873,21 +932,37 @@
             const menu = document.getElementById('navMenu');
             const toggle = document.getElementById('menuToggle');
             
-            if (menu.style.display === 'flex' || menu.style.display === '') {
-                menu.style.display = 'none';
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
                 toggle.innerHTML = '☰ Menu';
             } else {
-                menu.style.display = 'flex';
+                menu.classList.add('show');
                 toggle.innerHTML = '✕ Close';
             }
         }
 
         function closeMenu() {
             if (window.innerWidth <= 480) {
-                document.getElementById('navMenu').style.display = 'none';
-                document.getElementById('menuToggle').innerHTML = '☰ Menu';
+                const menu = document.getElementById('navMenu');
+                const toggle = document.getElementById('menuToggle');
+                menu.classList.remove('show');
+                toggle.innerHTML = '☰ Menu';
             }
         }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('navigation');
+            const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('menuToggle');
+            
+            if (window.innerWidth <= 480 && menu.classList.contains('show')) {
+                if (!nav.contains(event.target)) {
+                    menu.classList.remove('show');
+                    toggle.innerHTML = '☰ Menu';
+                }
+            }
+        });
 
         // Setup mobile menu on load and resize
         function setupMobileMenu() {
@@ -896,10 +971,12 @@
             
             if (window.innerWidth <= 480) {
                 toggle.style.display = 'block';
-                menu.style.display = 'none';
+                menu.classList.remove('show');
+                toggle.innerHTML = '☰ Menu';
             } else {
                 toggle.style.display = 'none';
                 menu.style.display = 'flex';
+                menu.classList.remove('show');
             }
         }
 
